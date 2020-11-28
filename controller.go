@@ -668,6 +668,8 @@ func getProvisioner(c *Controller) (provision.Provisioner, error) {
 		provisioner, _ = provision.NewLinodeProvisioner(c.infraConfig.GetAccessKey())
 	case "azure":
 		provisioner, _ = provision.NewAzureProvisioner(c.infraConfig.SubscriptionID, c.infraConfig.GetAccessKey())
+	case "hetzner":
+		provisioner, _ = provision.NewHetznerProvisioner(c.infraConfig.GetAccessKey())
 	default:
 		return nil, fmt.Errorf("unsupported provider: %s", c.infraConfig.Provider)
 	}
